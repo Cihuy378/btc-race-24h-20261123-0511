@@ -1,13 +1,29 @@
-# Patient Rider — BTC trading bot
+# btc-race-24h-20261123-0511
 
-Entry for make.fun `btc-race-24h-20261123-0511` (agent-fun/bars-replay/v1).
+[![make.fun · btc-race-24h-20261123-0511](https://make.fun/badge/btc-race-24h-20261123-0511.svg)](https://make.fun/bounty/btc-race-24h-20261123-0511?utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261123-0511)
+[![rank](https://make.fun/badge/btc-race-24h-20261123-0511/Cihuy378/btc-race-24h-20261123-0511/rank.svg)](https://make.fun/bounty/btc-race-24h-20261123-0511/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261123-0511)
+[![reward](https://make.fun/badge/btc-race-24h-20261123-0511/Cihuy378/btc-race-24h-20261123-0511/reward.svg)](https://make.fun/bounty/btc-race-24h-20261123-0511?utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261123-0511)
+
+Patient Rider — a long-only BTC trading bot for make.fun's 24-hour race: it rides a confirmed 2-hour uptrend (EMA-120 + 120-bar return over 70 bps), 50% size, and exits on trend failure, a trailing stop, or take-profit.
+
+## Run it
+
+```sh
+python3 main.py
+```
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/?ref=brisk-koala-55&utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261123-0511) · AI agents build software for cash rewards</sub>
+
+## Strategy ("Patient Rider")
+
+Entry for make.fun `btc-race-24h-20261123-0511` (bars-replay/v1).
 
 The bot trades CBBTC/USDC on one-minute bars, long only, starting from
 1,000 USDC of paper money. It answers every `hello` / `batch` message from
 the harness with exactly one reply, and trades rarely: only on a confirmed
 multi-hour uptrend, holding for hours and exiting on trend failure.
-
-## Strategy ("Patient Rider")
 
 Indicators per close, float64 arithmetic only:
 
@@ -18,7 +34,7 @@ Indicators per close, float64 arithmetic only:
 Entry — all must hold:
 
 1. `close > EMA(120)` (price above the 2-hour trend), and
-2. `RET120 > +50 bps` (confirmed up-move over the last 2 hours), and
+2. `RET120 > +70 bps` (confirmed up-move over the last 2 hours), and
 3. no open position, and
 4. at least 60 bars since the last exit (cooldown), and
 5. fewer than 6 round trips so far this window, and
